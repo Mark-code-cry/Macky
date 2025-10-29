@@ -6,14 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Macky</title>
 
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
 <body>
 
-  <!-- Navigation -->
   <header class="navbar">
     <div class="logo">Macky</div>
     <nav class="menu">
@@ -26,7 +24,6 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
   <section id="hero" class="hero">
     <div class="hero-content">
       <h2>Hello, I'm <span class="highlight">Mark Gloria</span></h2>
@@ -38,7 +35,6 @@
     </div>
   </section>
 
-  <!-- About Section -->
   <section id="about" class="about">
     <h2>About Me</h2>
     <p>
@@ -46,7 +42,6 @@
     </p>
   </section>
 
-  <!-- Skills Section -->
   <section id="skills" class="skills">
     <h2>Skills</h2>
     <div class="skills-grid">
@@ -58,7 +53,6 @@
     </div>
   </section>
 
-  <!-- Projects Section -->
   <section id="projects" class="projects">
     <h2>Projects</h2>
     <div class="project-grid">
@@ -76,7 +70,6 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact" class="contact">
     <h2>Contact Me</h2>
     <p>Interested in working together? Fill out the form or reach me directly!</p>
@@ -91,26 +84,23 @@
       <p id="form-status"></p>
     </div>
 
-    <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
     <script type="text/javascript">
-      // Initialize EmailJS with your public key
       (function(){
-        emailjs.init("YOUR_PUBLIC_KEY"); // <-- Replace with your EmailJS public key
+        emailjs.init("YOUR_PUBLIC_KEY"); 
       })();
 
       const form = document.getElementById('contact-form');
       const status = document.getElementById('form-status');
 
       form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
-        // Send the form using EmailJS
         emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
           .then(function() {
             status.textContent = "Message sent successfully!";
             status.style.color = "green";
-            form.reset(); // Clear the form
+            form.reset(); 
           }, function(error) {
             status.textContent = "Oops! Something went wrong. Please try again.";
             status.style.color = "red";
@@ -120,6 +110,31 @@
     </script>
 
   </section>
+
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    document.addEventListener('keydown', e => {
+      if (e.key === "F12") e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) e.preventDefault();
+      if (e.ctrlKey && e.key.toLowerCase() === 'u') e.preventDefault();
+    });
+
+    let devtoolsOpen = false;
+    const threshold = 160;
+    setInterval(() => {
+      const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+      const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+      if (widthThreshold || heightThreshold) {
+        if (!devtoolsOpen) {
+          devtoolsOpen = true;
+          alert("DevTools detected! Please close it.");
+        }
+      } else {
+        devtoolsOpen = false;
+      }
+    }, 1000);
+  </script>
 
 </body>
 </html>
